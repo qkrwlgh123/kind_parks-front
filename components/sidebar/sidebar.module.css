@@ -1,11 +1,11 @@
 .sidebar__container {
   height: 150px;
-  width: 300px;
+  width: 250px;
   background-color: #a2c4c9;
   position: absolute;
   top: 20%;
   border-radius: 5px;
-  padding: 20px 0;
+  padding: 10px 0;
   left: -350px;
   transition: left 0.5s ease;
 }
@@ -17,7 +17,7 @@
 .sidebar__list {
   list-style-type: none;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .sidebar__list li {

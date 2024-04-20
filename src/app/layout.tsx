@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Header from "../../components/header/header";
-import Sidebar from "../../components/sidebar/sidebar";
+import { Inter, Roboto } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+import "./globals.css";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["100", "400", "700"],
+  variable: "--roboto", // CSS 변수 방식으로 스타일을 지정할 경우에 사용합니다.
+});
 
 export const metadata: Metadata = {
   title: "Kind Parks",
@@ -18,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="kr">
-      <body className={inter.className}>{children}</body>
+      <body className={roboto.className}>{children}</body>
     </html>
   );
 }
