@@ -1,0 +1,26 @@
+.sidebar__container {
+  height: 150px;
+  width: 300px;
+  background-color: #a2c4c9;
+  position: absolute;
+  top: 20%;
+  border-radius: 5px;
+  padding: 20px 0;
+  left: -350px;
+  transition: left 0.5s ease;
+}
+
+.sidebar__container.active {
+  left: 0px;
+}
+
+.sidebar__list {
+  list-style-type: none;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.sidebar__list li {
+  margin-bottom: 15px;
+  cursor: pointer;
+}
