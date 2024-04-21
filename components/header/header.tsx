@@ -10,11 +10,17 @@ export default function Header({
   handleChangeSideBarStatus: () => void;
 }) {
   const router = useRouter();
-  const token = localStorage.getItem("parks_token");
+
+  let token;
+  if (typeof window !== undefined) {
+    token = localStorage.getItem("parks_token");
+  }
   /** 로그아웃 함수 */
   const handleRequestLogout = () => {
-    localStorage.removeItem("parks_token");
-    router.refresh();
+    if (typeof window !== undefined) {
+      localStorage.removeItem("parks_token");
+      router.refresh();
+    }
   };
   return (
     <header className={styles.header}>

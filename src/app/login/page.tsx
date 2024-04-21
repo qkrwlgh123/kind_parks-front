@@ -29,8 +29,10 @@ export default function Login() {
 
       // 로그인 성공 시 처리
       const token = response.data.token;
-      localStorage.setItem("parks_token", token);
-      router.replace("/");
+      if (typeof window !== undefined) {
+        localStorage.setItem("parks_token", token);
+        router.replace("/");
+      }
     } catch (error: any) {
       // 로그인 실패 시 처리
       console.error("로그인 실패:", error.response.data);
