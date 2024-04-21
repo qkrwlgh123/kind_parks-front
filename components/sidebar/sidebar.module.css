@@ -8,7 +8,8 @@
   left: -350px;
   transition: left 0.5s ease;
   @media (max-width: 500px) {
-    width: 150px;
+    width: 100px;
+    padding: 15px 0;
   }
 }
 
@@ -24,13 +25,16 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
+  @media (max-width: 500px) {
+    font-size: 11px;
+  }
 }
 
 .sidebar__list li {
   cursor: pointer;
   @media (max-width: 500px) {
-    font-size: 15px;
+    font-size: 11px;
   }
 }
 
