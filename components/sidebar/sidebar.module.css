@@ -1,13 +1,15 @@
 .sidebar__container {
-  height: 150px;
   width: 250px;
   background-color: #a2c4c9;
   position: absolute;
   top: 20%;
   border-radius: 5px;
-  padding: 10px 0;
+  padding: 20px 0;
   left: -350px;
   transition: left 0.5s ease;
+  @media (max-width: 500px) {
+    width: 150px;
+  }
 }
 
 .sidebar__container.active {
@@ -18,9 +20,20 @@
   list-style-type: none;
   font-size: 20px;
   font-weight: 400;
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
 }
 
 .sidebar__list li {
-  margin-bottom: 15px;
   cursor: pointer;
+  @media (max-width: 500px) {
+    font-size: 15px;
+  }
+}
+
+.sidebar__list li:hover {
+  color: #ffffff;
 }
