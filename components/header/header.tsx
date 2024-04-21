@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./header.module.css";
 
 export default function Header({
@@ -14,7 +15,9 @@ export default function Header({
         <div className={styles.menus__container}>
           <h3 onClick={handleChangeSideBarStatus}>Parks</h3>
           <h3>글 작성하기</h3>
-          <h3>로그인</h3>
+          <Link href="/login" className={styles.link__style}>
+            <h3>로그인</h3>
+          </Link>
         </div>
       </div>
     </header>
