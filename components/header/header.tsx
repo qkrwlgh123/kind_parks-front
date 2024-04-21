@@ -3,6 +3,7 @@
 import Link from "next/link";
 import styles from "./header.module.css";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Header({
   handleChangeSideBarStatus,
@@ -12,9 +13,7 @@ export default function Header({
   const router = useRouter();
 
   let token;
-  if (typeof window !== undefined) {
-    token = localStorage.getItem("parks_token");
-  }
+
   /** 로그아웃 함수 */
   const handleRequestLogout = () => {
     if (typeof window !== undefined) {
@@ -22,6 +21,11 @@ export default function Header({
       router.refresh();
     }
   };
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      token = localStorage.getItem("parks_token");
+    }
+  }, []);
   return (
     <header className={styles.header}>
       <div className={styles.inner__container}>
