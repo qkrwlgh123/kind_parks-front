@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Roboto } from "next/font/google";
+import { Roboto } from "next/font/google";
 
 import "./globals.css";
 
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["100", "400", "700"],
-  variable: "--roboto", // CSS 변수 방식으로 스타일을 지정할 경우에 사용합니다.
+  variable: "--roboto",
 });
 
 export const metadata: Metadata = {
