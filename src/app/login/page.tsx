@@ -20,7 +20,7 @@ export default function Login() {
 
     try {
       const response = await axios.post(
-        "http://15.164.166.107:4000/api/auth/login",
+        "https://server.kindparks.com/api/auth/login",
         {
           id: id,
           password: password,
