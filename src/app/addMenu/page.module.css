@@ -1,0 +1,26 @@
+.layout {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 200px;
+}
+
+.input__box {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  height: 30px;
+  width: 150px;
+  margin-right: 10px;
+}
+
+.submit__btn {
+  background-color: brown;
+  padding: 10px;
+  border-radius: 5px;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}

@@ -48,7 +48,11 @@ export default function Header({
           <h3 onClick={handleChangeSideBarStatus}>Parks</h3>
 
           {isToken && <h3>글 작성하기</h3>}
-
+          {isToken && (
+            <Link href="/addMenu" className={styles.link__style}>
+              <h3>사이드바 메뉴 편집</h3>
+            </Link>
+          )}
           {isToken ? (
             <h3 onClick={handleRequestLogout}>로그아웃</h3>
           ) : (
