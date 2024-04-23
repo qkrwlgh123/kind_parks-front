@@ -17,7 +17,10 @@ export default function Login() {
     password: string
   ) => {
     event.preventDefault();
-
+    if (id.length === 0 || password.length === 0) {
+      alert("계정정보가 입력되지 않았습니다.");
+      return;
+    }
     try {
       const response = await axios.post(
         "https://server.kindparks.com/api/auth/login",
@@ -32,6 +35,13 @@ export default function Login() {
       if (typeof window !== undefined) {
         localStorage.setItem("parks_token", token);
         router.replace("/");
+      } else {
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        console.log(isMobile);
+        if (isMobile) {
+          localStorage.setItem("parks_token", token);
+          router.replace("/");
+        }
       }
     } catch (error: any) {
       // 로그인 실패 시 처리

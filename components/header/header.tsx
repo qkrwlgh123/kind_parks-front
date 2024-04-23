@@ -28,6 +28,14 @@ export default function Header({
       if (localStorage.getItem("parks_token")) {
         setIsToken(true);
       }
+    } else {
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      console.log(isMobile);
+      if (isMobile) {
+        if (localStorage.getItem("parks_token")) {
+          setIsToken(true);
+        }
+      }
     }
   }, []);
   return (

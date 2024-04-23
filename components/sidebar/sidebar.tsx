@@ -5,7 +5,6 @@ export default function Sidebar({
 }: {
   isSidebarActive: boolean;
 }) {
-  console.log(isSidebarActive);
   return (
     <div
       className={`${styles.sidebar__container} ${
