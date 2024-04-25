@@ -34,7 +34,7 @@ export default function AddMenu() {
   const handleMenuClick = async (menu: string) => {
     if (selectedMenu === menu) {
       // 이미 선택된 메뉴를 다시 클릭하면 하위 메뉴 리스트를 숨깁니다.
-      setSelectedMenu(null);
+      setSelectedMenu("");
       setSubmenuList([]);
     } else {
       setSelectedMenu(menu);
