@@ -26,6 +26,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 20px;
+
   @media (max-width: 500px) {
     font-size: 11px;
   }
@@ -38,6 +39,14 @@
   }
 }
 
-.sidebar__list li:hover {
+.sidebar__list li span:hover {
   color: #ffffff;
+}
+
+.submenu__list {
+  color: #000000;
+  list-style: none;
+  font-size: 17px;
+  padding-left: 25px;
+  margin-top: 5px;
 }
