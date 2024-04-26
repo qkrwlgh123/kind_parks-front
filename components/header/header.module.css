@@ -5,6 +5,7 @@
   position: fixed;
   display: flex;
   justify-content: center;
+  z-index: 1;
   @media (max-width: 500px) {
     height: 60px;
   }

@@ -9,45 +9,47 @@ export default function Sidebar({
 }: {
   isSidebarActive: boolean;
 }) {
-  const [menuList, setMenuList] = useState<string[]>([]);
-  const [submenuList, setSubmenuList] = useState<string[]>([]);
-  const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
+  const [menuList, setMenuList] = useState<any>([]);
 
-  const fetchMenulistFunc = async () => {
-    const response = await axios.get(
-      "https://server.kindparks.com/api/menu/view"
+  const handleMenuClick = (id: number) => {
+    setMenuList((prevMenuList: any) =>
+      prevMenuList.map((item: any) =>
+        item.id === id ? { ...item, active: !item.active } : item
+      )
     );
-    if (response.data.code === 200) {
-      setMenuList(response.data.data);
-    }
-  };
-
-  const fetchSubmenuFunc = async (menu: string) => {
-    const response = await axios.post(
-      `https://server.kindparks.com/api/menu/submenu/view`,
-      {
-        parentMenu: menu,
-      }
-    );
-    if (response.data.code === 200) {
-      setSubmenuList(response.data.data);
-    }
-  };
-
-  const handleMenuClick = async (menu: string) => {
-    if (selectedMenu === menu) {
-      // 이미 선택된 메뉴를 다시 클릭하면 하위 메뉴 리스트를 숨깁니다.
-      setSelectedMenu(null);
-      setSubmenuList([]);
-    } else {
-      setSelectedMenu(menu);
-      fetchSubmenuFunc(menu);
-    }
   };
 
   useEffect(() => {
-    fetchMenulistFunc();
+    const fetchMenuData = async () => {
+      try {
+        const menuResponse = await axios.get(
+          "https://server.kindparks.com/api/menu/view"
+        );
+        if (menuResponse.data.code === 200) {
+          const menuData = menuResponse.data.data;
+          const submenuPromises = menuData.map((menuItem: any) =>
+            axios.post("https://server.kindparks.com/api/menu/submenu/view", {
+              parentMenu: menuItem.menu,
+            })
+          );
+          const submenuResponses = await Promise.all(submenuPromises);
+          const menuWithSubmenus = menuData.map(
+            (menuItem: any, index: number) => ({
+              ...menuItem,
+              submenuData: submenuResponses[index].data.data,
+              active: false,
+            })
+          );
+          setMenuList(menuWithSubmenus);
+        }
+      } catch (error) {
+        console.error("Error fetching menu data:", error);
+      }
+    };
+
+    fetchMenuData();
   }, []);
+  console.log(menuList);
   /** 클릭 시, 해당 메뉴에 해당하는 subMenulist를 불러와서 li 태그 아래에 붙여야한다.*/
   return (
     <div
@@ -57,14 +59,12 @@ export default function Sidebar({
     >
       <ul className={styles.sidebar__list}>
         {menuList?.map((item: any) => (
-          <div key={item.id}>
+          <div key={item.id} className={styles.sidebar__element}>
             <li>
-              <span onClick={() => handleMenuClick(item.menu)}>
-                {item.menu}
-              </span>
-              {selectedMenu === item.menu && submenuList.length > 0 && (
+              <span onClick={() => handleMenuClick(item.id)}>{item.menu}</span>
+              {item.submenuData?.length > 0 && (
                 <ul className={styles.submenu__list}>
-                  {submenuList?.map((submenu: any, index: number) => (
+                  {item.submenuData?.map((submenu: any, index: number) => (
                     <li key={index}>
                       <span>{submenu.name}</span>
                     </li>

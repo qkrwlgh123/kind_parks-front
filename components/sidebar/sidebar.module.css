@@ -1,12 +1,13 @@
 .sidebar__container {
-  width: 250px;
-  background-color: #a2c4c9;
+  width: 300px;
+  background-color: inherit;
   position: absolute;
-  top: 20%;
+  top: 9.55%;
   border-radius: 5px;
   padding: 20px 0;
   left: -350px;
   transition: left 0.5s ease;
+
   @media (max-width: 500px) {
     width: 100px;
     padding: 15px 0;
@@ -30,6 +31,12 @@
   @media (max-width: 500px) {
     font-size: 11px;
   }
+}
+
+.sidebar__element {
+  border-bottom: 0.1px solid #222222;
+  padding-bottom: 15px;
+  padding-top: 20px;
 }
 
 .sidebar__list li {
