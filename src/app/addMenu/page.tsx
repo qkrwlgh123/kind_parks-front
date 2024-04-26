@@ -150,8 +150,8 @@ export default function AddMenu() {
             </div>
             <div>
               {submenuList?.map((item: any) => (
-                <div className={styles.menu__element}>
-                  <div key={item.id} className={styles.menu__box}>
+                <div key={item.id} className={styles.menu__element}>
+                  <div className={styles.menu__box}>
                     <span className={styles.menu__btn}>{item.name}</span>
                   </div>
                   <div
