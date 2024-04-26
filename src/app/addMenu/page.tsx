@@ -49,6 +49,19 @@ export default function AddMenu() {
     setInputedSubmenuText(value);
   };
 
+  const handleDeleteSubmenu = async (id: number) => {
+    const response = await axios.post(
+      "https://server.kindparks.com/api/menu/submenu/delete",
+      {
+        id,
+      }
+    );
+    if (response.data.code === 200) {
+      alert("등록되었습니다.");
+      fetchSubmenulistFunc(selectedMenu);
+    }
+  };
+
   const handleSubmitText = async () => {
     const response = await axios.post(
       "https://server.kindparks.com/api/menu/add",
@@ -56,7 +69,7 @@ export default function AddMenu() {
         text: inputedText,
       }
     );
-    console.log("Response:", response.data);
+
     if (response.data.code === 200) {
       const resultText = inputedText;
       alert("등록되었습니다.");
@@ -137,8 +150,16 @@ export default function AddMenu() {
             </div>
             <div>
               {submenuList?.map((item: any) => (
-                <div key={item.id} className={styles.menu__box}>
-                  <span className={styles.menu__btn}>{item.name}</span>
+                <div className={styles.menu__element}>
+                  <div key={item.id} className={styles.menu__box}>
+                    <span className={styles.menu__btn}>{item.name}</span>
+                  </div>
+                  <div
+                    className={styles.delete__btn_box}
+                    onClick={() => handleDeleteSubmenu(item.id)}
+                  >
+                    <span>삭제</span>
+                  </div>
                 </div>
               ))}
             </div>

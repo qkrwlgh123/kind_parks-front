@@ -25,6 +25,11 @@
   cursor: pointer;
 }
 
+.menu__element {
+  display: flex;
+  align-items: center;
+}
+
 .menu__box {
   margin-bottom: 20px;
   width: fit-content;
@@ -33,6 +38,7 @@
   color: #ffffff;
   font-weight: 500;
   background-color: pink;
+  margin-right: 20px;
 }
 
 .menu__btn {
@@ -46,4 +52,11 @@
 
 .left__container {
   margin-right: 200px;
+}
+
+.delete__btn_box {
+  background-color: gainsboro;
+  padding: 5px;
+  border-radius: 2px;
+  cursor: pointer;
 }
