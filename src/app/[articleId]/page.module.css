@@ -1,0 +1,5 @@
+.viewer__container {
+  justify-content: center;
+  display: flex;
+  margin-top: 250px;
+}
