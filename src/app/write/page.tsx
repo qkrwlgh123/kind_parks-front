@@ -19,6 +19,8 @@ export default function Write() {
 
   const [inputedText, setInputedText] = useState("");
 
+  const [title, setTitle] = useState("");
+
   const handleSubmitArticle = async () => {
     try {
       const response = await axios.post(
@@ -27,6 +29,7 @@ export default function Write() {
           text: inputedText,
           submenu: selectedSubMenu,
           username: "glypark",
+          title,
         }
       );
       if (response.status === 200) {
@@ -50,7 +53,7 @@ export default function Write() {
   useEffect(() => {
     fetchFunc();
   }, []);
-
+  console.log(title);
   useEffect(() => {
     const fetchSubmenulistFunc = async (menu: string) => {
       const response = await axios.post(
@@ -89,6 +92,10 @@ export default function Write() {
             ))}
           </select>
         </div>
+      </div>
+      <div>
+        <span>제목</span>
+        <input type="text" onChange={(e) => setTitle(e.target.value)} />
       </div>
       <EditorBox setInputedText={setInputedText} />
       {selectedMenu && selectedSubMenu ? (
