@@ -3,3 +3,8 @@
   display: flex;
   margin-top: 250px;
 }
+
+.title__box {
+  margin-bottom: 50px;
+  border-bottom: 1px solid #535353;
+}
