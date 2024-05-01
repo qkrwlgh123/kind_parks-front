@@ -47,7 +47,12 @@ export default function Header({
         <div className={styles.menus__container}>
           <h3 onClick={handleChangeSideBarStatus}>Parks</h3>
 
-          {isToken && <h3>글 작성하기</h3>}
+          {isToken && (
+            <Link href="/write" className={styles.link__style}>
+              <h3>글 작성하기</h3>
+            </Link>
+          )}
+
           {isToken && (
             <Link href="/addMenu" className={styles.link__style}>
               <h3>사이드바 메뉴 편집</h3>

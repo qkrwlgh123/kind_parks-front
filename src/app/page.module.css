@@ -1,0 +1,9 @@
+.article_list {
+  margin-top: 150px;
+  position: absolute;
+  left: 45%;
+}
+
+.article_list div {
+  cursor: pointer;
+}

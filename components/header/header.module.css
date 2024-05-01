@@ -46,4 +46,5 @@
 .link__style {
   color: inherit; /* 링크의 색상을 부모 요소로부터 상속합니다. */
   text-decoration: none; /* 기본 밑줄을 제거합니다. */
+  cursor: pointer;
 }
