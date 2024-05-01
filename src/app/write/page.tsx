@@ -91,11 +91,17 @@ export default function Write() {
         </div>
       </div>
       <EditorBox setInputedText={setInputedText} />
-      <div>
-        <button onClick={handleSubmitArticle}>
-          <span>작성하기</span>
-        </button>
-      </div>
+      {selectedMenu && selectedSubMenu ? (
+        <div>
+          <button onClick={handleSubmitArticle}>
+            <span>작성하기</span>
+          </button>
+        </div>
+      ) : (
+        <div>
+          <span>하위 카테고리를 선택해주세요.</span>
+        </div>
+      )}
     </main>
   );
 }
