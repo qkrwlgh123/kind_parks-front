@@ -44,7 +44,6 @@ export default function Home() {
           articleList?.map((el: any) => (
             <Link href={`/${el.id}`} key={el.id}>
               <div>
-                <span>글번호:{el.id}</span>
                 <span>{el.title}</span>
               </div>
             </Link>
