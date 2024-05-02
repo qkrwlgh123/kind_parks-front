@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./sidebar.module.css";
 import axios from "axios";
+import Link from "next/link";
 
 export default function Sidebar({
   isSidebarActive,
@@ -65,9 +66,17 @@ export default function Sidebar({
               {item.submenuData?.length > 0 && (
                 <ul className={styles.submenu__list}>
                   {item.submenuData?.map((submenu: any, index: number) => (
-                    <li key={index}>
-                      <span>{submenu.name}</span>
-                    </li>
+                    <Link
+                      href={{
+                        pathname: `/${submenu.id}`,
+                      }}
+                      className={styles.link_style}
+                      key={index}
+                    >
+                      <li>
+                        <span>{submenu.name}</span>
+                      </li>
+                    </Link>
                   ))}
                 </ul>
               )}

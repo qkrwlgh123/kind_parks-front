@@ -60,3 +60,8 @@
   color: #ffffff;
   cursor: pointer;
 }
+
+.link_style {
+  text-decoration: none;
+  color: inherit;
+}

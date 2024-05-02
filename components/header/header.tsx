@@ -42,7 +42,9 @@ export default function Header({
     <header className={styles.header}>
       <div className={styles.inner__container}>
         <div>
-          <h2 className={styles.title}>Kind Parks</h2>
+          <Link href="/" className={styles.link__style}>
+            <h2 className={styles.title}>Kind Parks</h2>
+          </Link>
         </div>
         <div className={styles.menus__container}>
           <h3 onClick={handleChangeSideBarStatus}>Parks</h3>

@@ -24,7 +24,7 @@ export default function Home() {
 
   const fetchFunc = async () => {
     const response = await axios.post(
-      "https://server.kindparks.com/api/article/list"
+      "https://server.kindparks.com/api/article/latestList"
     );
     if (response.data.code === 200) {
       setArticleList(response.data.data);
@@ -33,21 +33,28 @@ export default function Home() {
   useEffect(() => {
     fetchFunc();
   }, []);
-  console.log(articleList);
+
   return (
     <main className={styles.main}>
       <Header handleChangeSideBarStatus={handleChangeSideBarStatus} />
       <Sidebar isSidebarActive={isSidebarActive} />
 
       <div className={styles.article_list}>
-        {isTitleClicked === 0 &&
-          articleList?.map((el: any) => (
-            <Link href={`/${el.id}`} key={el.id}>
+        <div>
+          <h2>최신글</h2>
+        </div>
+        {articleList?.map((el: any) => (
+          <div className={styles.article_box} key={el.id}>
+            <div className={styles.author}>
+              <span>{el.user.userId}</span>
+            </div>
+            <Link href={`/article/${el.id}`} className={styles.article_link}>
               <div>
                 <span>{el.title}</span>
               </div>
             </Link>
-          ))}
+          </div>
+        ))}
       </div>
     </main>
   );
