@@ -5,17 +5,13 @@
   top: 9.55%;
   border-radius: 5px;
   padding: 20px 0;
-  left: -350px;
+
   transition: left 0.5s ease;
 
   @media (max-width: 500px) {
     width: 100px;
     padding: 15px 0;
   }
-}
-
-.sidebar__container.active {
-  left: 0px;
 }
 
 .sidebar__list {

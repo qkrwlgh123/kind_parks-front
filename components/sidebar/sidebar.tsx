@@ -5,11 +5,7 @@ import styles from "./sidebar.module.css";
 import axios from "axios";
 import Link from "next/link";
 
-export default function Sidebar({
-  isSidebarActive,
-}: {
-  isSidebarActive: boolean;
-}) {
+export default function Sidebar() {
   const [menuList, setMenuList] = useState<any>([]);
 
   const handleMenuClick = (id: number) => {
@@ -53,11 +49,7 @@ export default function Sidebar({
   console.log(menuList);
   /** 클릭 시, 해당 메뉴에 해당하는 subMenulist를 불러와서 li 태그 아래에 붙여야한다.*/
   return (
-    <div
-      className={`${styles.sidebar__container} ${
-        isSidebarActive && styles.active
-      }`}
-    >
+    <div className={`${styles.sidebar__container}`}>
       <ul className={styles.sidebar__list}>
         {menuList?.map((item: any) => (
           <div key={item.id} className={styles.sidebar__element}>

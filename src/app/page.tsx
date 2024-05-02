@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <Header handleChangeSideBarStatus={handleChangeSideBarStatus} />
-      <Sidebar isSidebarActive={isSidebarActive} />
+      <Sidebar />
 
       <div className={styles.article_list}>
         <div>
