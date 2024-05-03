@@ -43,7 +43,7 @@ export default function ArticleDetail({ params }: Props) {
     fetchFunc();
   }, []);
 
-  function formatDate(isoDateString: string) {
+  const formatDate = (isoDateString: string) => {
     const dateParts = isoDateString.split("T")[0].split("-");
     const timeParts = isoDateString.split("T")[1]?.split(".")[0].split(":");
 
@@ -62,7 +62,7 @@ export default function ArticleDetail({ params }: Props) {
     }
 
     return `${year}년 ${month}월 ${day}일 ${period} ${hour}시 ${minute}분`;
-  }
+  };
   return (
     <div>
       <div className={styles.title__box}>

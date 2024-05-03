@@ -14,13 +14,6 @@ export default function Home() {
   const [isTitleClicked, setIsTitleClicked] = useState(0);
 
   const [articleList, setArticleList] = useState([]);
-  /** 로그인 상태 */
-  const [isLogin, setIsLogin] = useState(false);
-
-  /** sideBar Active 함수 */
-  const handleChangeSideBarStatus = () => {
-    setIsSidebarActive((prev) => !prev);
-  };
 
   const fetchFunc = async () => {
     const response = await axios.post(
@@ -34,25 +27,47 @@ export default function Home() {
     fetchFunc();
   }, []);
 
+  const formatDate = (isoDateString: string) => {
+    const dateParts = isoDateString.split("T")[0].split("-");
+    const timeParts = isoDateString.split("T")[1]?.split(".")[0].split(":");
+
+    const year = dateParts[0];
+    const month = dateParts[1];
+    const day = dateParts[2];
+
+    let hour = parseInt(timeParts[0]);
+    const minute = timeParts[1];
+
+    let period = "오전";
+
+    if (hour >= 12) {
+      period = "오후";
+      hour -= 12;
+    }
+
+    return `${year}년 ${month}월 ${day}일 ${period} ${hour}시 ${minute}분`;
+  };
   return (
     <main className={styles.main}>
-      <Header handleChangeSideBarStatus={handleChangeSideBarStatus} />
-      <Sidebar />
-
       <div className={styles.article_list}>
         <div>
-          <h2>최신글</h2>
+          <h2>New</h2>
         </div>
         {articleList?.map((el: any) => (
           <div className={styles.article_box} key={el.id}>
-            <div className={styles.author}>
-              <span>{el.user.userId}</span>
-            </div>
-            <Link href={`/article/${el.id}`} className={styles.article_link}>
-              <div>
-                <span>{el.title}</span>
+            <div className={styles.author__title}>
+              <div className={styles.author}>
+                <span>{el.user.userId}</span>
               </div>
-            </Link>
+              <Link href={`/article/${el.id}`} className={styles.article_link}>
+                <div>
+                  <span>{el.title}</span>
+                </div>
+              </Link>
+            </div>
+            <div>
+              <span>{formatDate(el.createdAt)}</span>
+            </div>
           </div>
         ))}
       </div>

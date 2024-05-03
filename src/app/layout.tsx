@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 
 import "./globals.css";
+import styles from "./page.module.css";
+import Header from "../../components/header/header";
+import Sidebar from "../../components/sidebar/sidebar";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -21,7 +24,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="kr">
-      <body className={roboto.className}>{children}</body>
+      <body className={roboto.className}>
+        <Header />
+        <Sidebar />
+        <div className={styles.inner__content_area}>{children}</div>
+      </body>
     </html>
   );
 }

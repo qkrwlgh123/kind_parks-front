@@ -1,17 +1,19 @@
 .sidebar__container {
   width: 300px;
   background-color: inherit;
-  position: absolute;
-  top: 9.55%;
-  border-radius: 5px;
+  position: fixed;
+  top: 150px;
   padding: 20px 0;
-
-  transition: left 0.5s ease;
-
+  height: 80vh; /* 변경: 80%의 높이로 지정 */
+  overflow-y: scroll;
   @media (max-width: 500px) {
     width: 100px;
     padding: 15px 0;
   }
+}
+
+.sidebar__container::-webkit-scrollbar {
+  display: none; /* 웹킷 브라우저에서 스크롤바를 숨김 */
 }
 
 .sidebar__list {
@@ -23,14 +25,13 @@
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-
   @media (max-width: 500px) {
     font-size: 11px;
   }
 }
 
 .sidebar__element {
-  border-bottom: 0.1px solid #222222;
+  border-bottom: 1px solid #adb5bd;
   padding-bottom: 15px;
   padding-top: 7px;
 }

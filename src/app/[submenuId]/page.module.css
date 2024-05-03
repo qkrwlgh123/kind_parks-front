@@ -1,12 +1,10 @@
 .article_list {
-  margin-top: 200px;
-  position: absolute;
-  left: 38%;
 }
 
 .article_box {
   display: flex;
-  border-bottom: 1px solid #222222;
+  justify-content: space-between;
+  border-bottom: 1px solid #adb5bd;
   padding: 20px 15px;
   margin-bottom: 35px;
 }
@@ -18,4 +16,8 @@
 .article_link {
   text-decoration: none;
   color: inherit;
+}
+
+.author__title {
+  display: flex;
 }

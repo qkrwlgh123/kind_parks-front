@@ -5,11 +5,7 @@ import styles from "./header.module.css";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function Header({
-  handleChangeSideBarStatus,
-}: {
-  handleChangeSideBarStatus: () => void;
-}) {
+export default function Header() {
   const router = useRouter();
 
   const [isToken, setIsToken] = useState(false);
@@ -47,8 +43,6 @@ export default function Header({
           </Link>
         </div>
         <div className={styles.menus__container}>
-          <h3 onClick={handleChangeSideBarStatus}>Parks</h3>
-
           {isToken && (
             <Link href="/write" className={styles.link__style}>
               <h3>글 작성하기</h3>
