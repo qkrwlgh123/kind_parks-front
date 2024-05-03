@@ -52,7 +52,7 @@ export default function SubmenuPage() {
       hour -= 12;
     }
 
-    return `${year}년 ${month}월 ${day}일 ${period} ${hour}시 ${minute}분`;
+    return `${year}.${month}.${day} ${period} ${hour}:${minute}`;
   };
 
   return (
@@ -64,9 +64,9 @@ export default function SubmenuPage() {
         {articleList.length > 0 ? (
           articleList?.map((el: any) => (
             <div className={styles.article_box} key={el.id}>
-              <div className={styles.author__title}>
-                <div className={styles.author}>
-                  <span>{el.user.userId}</span>
+              <div className={styles.submenu__title}>
+                <div className={styles.submenu}>
+                  <span>{el.submenu.name}</span>
                 </div>
                 <Link
                   href={`/article/${el.id}`}
@@ -77,8 +77,13 @@ export default function SubmenuPage() {
                   </div>
                 </Link>
               </div>
-              <div>
-                <span>{formatDate(el.createdAt)}</span>
+              <div className={styles.author__createdDate}>
+                <div className={styles.author__text}>
+                  <span>{el.user.userId}</span>
+                </div>
+                <div className={styles.createdDate__text}>
+                  <span>{formatDate(el.createdAt)}</span>
+                </div>
               </div>
             </div>
           ))
