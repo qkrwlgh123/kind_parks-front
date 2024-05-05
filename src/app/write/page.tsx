@@ -53,7 +53,7 @@ export default function Write() {
   useEffect(() => {
     fetchFunc();
   }, []);
-  console.log(title);
+
   useEffect(() => {
     const fetchSubmenulistFunc = async (menu: string) => {
       const response = await axios.post(
@@ -64,17 +64,21 @@ export default function Write() {
       );
       if (response.data.code === 200) {
         setSubMenuList(response.data.data);
+        setSelectedSubMenu(response.data.data[0]?.name);
       }
     };
     if (selectedMenu) fetchSubmenulistFunc(selectedMenu);
   }, [selectedMenu]);
-
+  console.log(selectedMenu, selectedSubMenu);
   return (
     <main>
       <div>
         <div>카테고리 선택</div>
         <div>
-          <select onChange={(e) => setSelectedMenu(e.target.value)}>
+          <select
+            value={selectedMenu}
+            onChange={(e) => setSelectedMenu(e.target.value)}
+          >
             {menuList?.map((el: any) => (
               <option key={el.id} value={el.menu}>
                 {el.menu}
@@ -84,7 +88,10 @@ export default function Write() {
         </div>
         <div>하위 카테고리 선택</div>
         <div>
-          <select onChange={(e) => setSelectedSubMenu(e.target.value)}>
+          <select
+            value={selectedSubMenu}
+            onChange={(e) => setSelectedSubMenu(e.target.value)}
+          >
             {submenuList?.map((el: any) => (
               <option key={el.id} value={el.name}>
                 {el.name}
