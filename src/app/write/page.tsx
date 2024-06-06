@@ -40,7 +40,32 @@ export default function Write() {
       alert("error");
     }
   };
-  console.log(inputedText);
+
+  /** 토큰 검증 요청 함수
+   * 1.서버로 토큰 검증 요청
+   * 2.만약 404로 응답이 오면, 404 페이지로 redirect
+   */
+
+  const handleValidateToken = async () => {
+    if (typeof window !== undefined) {
+      const token = localStorage.getItem("parks_token");
+      try {
+        const response = await axios.post(
+          "https://server.kindparks.com/api/auth/validate",
+          {
+            token,
+          }
+        );
+        if (response.data.code === 200) {
+          return;
+        }
+      } catch (err) {
+        alert("비정상적인 접근입니다.");
+        router.push("/");
+      }
+    }
+  };
+
   const fetchFunc = async () => {
     const response = await axios.get(
       "https://server.kindparks.com/api/menu/view"
@@ -51,6 +76,7 @@ export default function Write() {
   };
 
   useEffect(() => {
+    handleValidateToken();
     fetchFunc();
   }, []);
 
@@ -69,7 +95,7 @@ export default function Write() {
     };
     if (selectedMenu) fetchSubmenulistFunc(selectedMenu);
   }, [selectedMenu]);
-  console.log(selectedMenu, selectedSubMenu);
+
   return (
     <main>
       <div>
