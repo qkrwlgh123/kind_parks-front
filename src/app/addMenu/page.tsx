@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function AddMenu() {
+  const router = useRouter();
   const [inputedText, setInputedText] = useState("");
   const [inputedSubmenuText, setInputedSubmenuText] = useState("");
   const [menuList, setMenuList] = useState<string[]>([]);
@@ -17,6 +19,26 @@ export default function AddMenu() {
     );
     if (response.data.code === 200) {
       setMenuList(response.data.data);
+    }
+  };
+
+  const handleValidateToken = async () => {
+    if (typeof window !== undefined) {
+      const token = localStorage.getItem("parks_token");
+      try {
+        const response = await axios.post(
+          "https://server.kindparks.com/api/auth/validate",
+          {
+            token,
+          }
+        );
+        if (response.data.code === 200) {
+          return;
+        }
+      } catch (err) {
+        alert("비정상적인 접근입니다.");
+        router.push("/");
+      }
     }
   };
 
@@ -98,6 +120,7 @@ export default function AddMenu() {
   };
 
   useEffect(() => {
+    handleValidateToken();
     fetchFunc();
   }, []);
 
