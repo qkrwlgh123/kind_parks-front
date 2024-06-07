@@ -6,7 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 export default function AddMenu() {
-  let isTokenValidate = false;
+  const [isTokenValidate, setIsTokenValidate] = useState(false);
   const router = useRouter();
   const [inputedText, setInputedText] = useState("");
   const [inputedSubmenuText, setInputedSubmenuText] = useState("");
@@ -34,7 +34,7 @@ export default function AddMenu() {
           }
         );
         if (response.data.code === 200) {
-          isTokenValidate = true;
+          setIsTokenValidate(true);
         }
       } catch (err) {
         alert("비정상적인 접근입니다.");

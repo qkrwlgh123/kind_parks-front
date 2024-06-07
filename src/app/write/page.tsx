@@ -11,7 +11,8 @@ const EditorBox = dynamic(
 );
 
 export default function Write() {
-  let isTokenValidate = false;
+  const [isTokenValidate, setIsTokenValidate] = useState(false);
+
   const router = useRouter();
   const [menuList, setMenuList] = useState([]);
   const [selectedMenu, setSelectedMenu] = useState("");
@@ -58,7 +59,7 @@ export default function Write() {
           }
         );
         if (response.data.code === 200) {
-          isTokenValidate = true;
+          setIsTokenValidate(true);
         }
       } catch (err) {
         alert("비정상적인 접근입니다.");
