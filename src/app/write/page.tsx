@@ -11,6 +11,7 @@ const EditorBox = dynamic(
 );
 
 export default function Write() {
+  let isTokenValidate = false;
   const router = useRouter();
   const [menuList, setMenuList] = useState([]);
   const [selectedMenu, setSelectedMenu] = useState("");
@@ -57,7 +58,7 @@ export default function Write() {
           }
         );
         if (response.data.code === 200) {
-          return;
+          isTokenValidate = true;
         }
       } catch (err) {
         alert("비정상적인 접근입니다.");
@@ -96,7 +97,7 @@ export default function Write() {
     if (selectedMenu) fetchSubmenulistFunc(selectedMenu);
   }, [selectedMenu]);
 
-  return (
+  return isTokenValidate ? (
     <main>
       <div>
         <div>카테고리 선택</div>
@@ -143,5 +144,5 @@ export default function Write() {
         </div>
       )}
     </main>
-  );
+  ) : null;
 }

@@ -6,6 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 export default function AddMenu() {
+  let isTokenValidate = false;
   const router = useRouter();
   const [inputedText, setInputedText] = useState("");
   const [inputedSubmenuText, setInputedSubmenuText] = useState("");
@@ -33,7 +34,7 @@ export default function AddMenu() {
           }
         );
         if (response.data.code === 200) {
-          return;
+          isTokenValidate = true;
         }
       } catch (err) {
         alert("비정상적인 접근입니다.");
@@ -124,7 +125,7 @@ export default function AddMenu() {
     fetchFunc();
   }, []);
 
-  return (
+  return isTokenValidate ? (
     <main className={styles.login__box}>
       <div>
         <h1>사이드바 메뉴 편집</h1>
@@ -206,5 +207,5 @@ export default function AddMenu() {
         </div>
       </div>
     </main>
-  );
+  ) : null;
 }
